@@ -20,7 +20,6 @@
             <label class="form-container__label">Пароль</label>
             <input name="password" type="password" class="form-container__login" required>
             <input type="submit" class="form__btn" value="Войти">
-            <a href="/register" class="ref-btn">Регистрация</a>
             <span class="msg-error"><?=$error?></span>
         </form>
     </div>
