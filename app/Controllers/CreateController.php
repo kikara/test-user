@@ -18,12 +18,31 @@ class CreateController
         }
         $userModel = new User();
         if ($userModel->validate($_POST)) {
+            if (self::checkUserLogin($userModel->getAll(), $_POST['login'])) {
+                view('create', ['error-msg' => 'Пользователь с таким логином уже существует']);
+            }
             $userModel->create($_POST);
             header('Location: /');
         } else {
-            //TODO view('create', msg-error);
-            header('Location: /create');
+            view('create', ['error-msg' => 'Заполните все поля']);
         }
+    }
+
+
+    /**
+     * Проверка пользователся с существующим логином
+     * @param $users
+     * @param $login
+     * @return bool
+     */
+    public static function checkUserLogin($users, $login): bool
+    {
+        foreach ($users as $user) {
+            if ($user['login'] === $login) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

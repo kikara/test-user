@@ -1,5 +1,6 @@
 <?php
-    $data = $_SESSION['data']['main'];
+    $data = $_SESSION['main']['data'];
+    unset($_SESSION['main']['data']);
 ?>
 <!doctype html>
 <html lang="ru">
@@ -8,7 +9,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Main Template</title>
+    <title>Список пользователей</title>
     <link rel="stylesheet" href="/public/css/style.css">
 </head>
 <body>
@@ -21,15 +22,15 @@
                 <th>Имя</th>
                 <th>Фамилия</th>
                 <th>Возраст</th>
-                <th>Авторизован</th>
             </tr>
             </thead>
             <tbody>
             <?php foreach ($data as $id => $user) :?>
                 <tr>
                     <td><?= $id?></td>
-                    <td><?= $user['login']?></td>
-                    <td><?= $id === $_SESSION['user'] ? 'Текущий' : ''?></td>
+                    <td><?= $user['name']?></td>
+                    <td><?= $user['surname']?></td>
+                    <td><?= $user['age']?></td>
                 </tr>
             <?php endforeach;?>
             </tbody>

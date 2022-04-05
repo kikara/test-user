@@ -8,12 +8,10 @@ class MainController
 {
     public static function index()
     {
-        if (isAuth()) {
-            $user = new User();
-            $_SESSION['data']['main'] = $user->getAll();
-            view('main');
-        } else {
+        if (! isAuth()) {
             header('Location: /login');
         }
+        $user = new User();
+        view('main', $user->getAll());
     }
 }

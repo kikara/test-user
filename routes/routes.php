@@ -2,9 +2,6 @@
 
 use App\Core\Router;
 
-Router::get('/server', function() {
-    dump($_SERVER);
-});
 
 Router::get('/', ['App\\Controllers\\MainController', 'index']);
 

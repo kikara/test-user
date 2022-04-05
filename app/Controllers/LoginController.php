@@ -9,29 +9,31 @@ class LoginController
 
     public static function index()
     {
-        self::checkLogout();
+        self::checkAndLogout();
         view('login');
     }
 
     public static function auth() {
-        self::checkLogout();
+        self::checkAndLogout();
         if (isAuth()) {
             header('Location: /');
+        }
+        $user = new User();
+        $result = $user->getAll();
+        $userID = self::checkUser($result);
+        if (is_null($userID)) {
+            view('login', ['error-msg' => 'Логин или пароль неверный']);
         } else {
-            $user = new User();
-            $result = $user->getAll();
-            $userID = self::checkUser($result);
-            dump($userID);
-            if (is_null($userID)) {
-                $_SESSION['data']['login']['error'] = 'Логин или пароль неверный.';
-                header('Location: /login');
-            } else {
-                $_SESSION['user'] = $userID;
-                header('Location: /');
-            }
+            login($userID);
+            header('Location: /');
         }
     }
 
+    /**
+     * Проверка существующего пользователя
+     * @param $users
+     * @return int|string|null
+     */
     public static function checkUser($users)
     {
         if (isset($_POST['login']) && isset($_POST['password'])){
@@ -44,10 +46,10 @@ class LoginController
         return null;
     }
 
-    /*
-     *  Проверка запроса на выход
+    /**
+     * Выход из системы
      */
-    public static function checkLogout(): void
+    public static function checkAndLogout(): void
     {
         if (! empty($_GET) && isset($_GET['logout'])) {
             logout();

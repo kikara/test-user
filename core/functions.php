@@ -22,8 +22,9 @@ function login($userID)
     $_SESSION['user'] = $userID;
 }
 
-function view($nameView)
+function view($nameView, $data = null)
 {
+    $_SESSION[$nameView]['data'] = $data;
     include $_SERVER['DOCUMENT_ROOT'] . '/resources/templates/' . $nameView . '.php';
     die();
 }
