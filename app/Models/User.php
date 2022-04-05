@@ -6,6 +6,10 @@ use App\Core\Database\Model;
 
 class User extends Model
 {
+    /**
+     * Столбцы моделя
+     * @var array|string[]
+     */
     public array $data = [
         'name',
         'surname',
@@ -38,7 +42,7 @@ class User extends Model
     }
 
     /**
-     * Проверка наличия всех столбцов и наличие значения в указанном массиве
+     * Валдиация данных по текущему моделю (Тут также требуется валидация по типу значения(string, int))
      * @param array $data
      * @return bool
      */

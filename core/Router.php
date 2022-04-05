@@ -22,6 +22,10 @@ class Router
         self::$routes['post'][$uri] = $action;
     }
 
+    /**
+     * Вызов callback функции указанном в роутере по указанному запросу
+     * @param \App\Core\Request $request
+     */
     public function response(Request $request)
     {
         $uri = $request->getUri();

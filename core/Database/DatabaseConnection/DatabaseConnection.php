@@ -25,6 +25,10 @@ class DatabaseConnection
         }
     }
 
+    /**
+     * Получить все записи
+     * @return array
+     */
     public function getAllRecords(): array
     {
         return $this->table;
@@ -35,6 +39,11 @@ class DatabaseConnection
         return $this->table[$id] ?? [];
     }
 
+    /**
+     * Запись в файл
+     * @param array $row
+     * @return int|string|null
+     */
     public function putRow(array $row)
     {
         $this->table[] = $row;

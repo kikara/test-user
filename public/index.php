@@ -11,8 +11,20 @@ require_once '../app/Controllers/CreateController.php';
 require_once '../app/Models/User.php';
 require_once '../core/Application.php';
 
+/**
+ * Автор - Торбогошев Артур, 25 лет
+ * Тестовое задание на вакансию DoApp
+ * 05.04.2022
+ *
+ *
+ * Маршруты прописаны в routes
+ *
+ * login - kikara
+ * password - 123456
+ *
+ */
+
+
 session_start();
 $app = new \App\Core\Application();
 $app->run();
-
-//dump($_SERVER);

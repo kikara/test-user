@@ -2,6 +2,9 @@
 
 use App\Core\Router;
 
+/**
+ * Маршрутизация
+ */
 
 Router::get('/', ['App\\Controllers\\MainController', 'index']);
 
